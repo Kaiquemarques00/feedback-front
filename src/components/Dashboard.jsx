@@ -10,7 +10,7 @@ const Dashboard = ({ token }) => {
   useEffect(() => {
     const fetchFeedbacks = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/feedback?page=${currentPage}`, {
+        const response = await axios.get(`https://feedback-api-w3kg.onrender.com/feedback?page=${currentPage}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setFeedbacks(response.data.feedbacks);

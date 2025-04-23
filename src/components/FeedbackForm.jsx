@@ -17,7 +17,7 @@ const FeedbackForm = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:3001/feedback', form);
+      await axios.post('https://feedback-api-w3kg.onrender.com/feedback', form);
       setMsg({ text: 'Feedback enviado com sucesso!', type: 'success' });
       setForm({ name: '', email: '', note: 1, comment: '' });
     } catch {
