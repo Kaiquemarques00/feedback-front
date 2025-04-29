@@ -1,44 +1,38 @@
-import { useState, useEffect } from 'react';
-import Login from './components/Login';
-import Dashboard from './components/Dashboard';
-import FeedbackForm from './components/FeedbackForm';
-import './App.css';
+import { useState, useEffect } from "react";
+import FeedbackForm from "./components/FeedbackForm";
+import Dashboard from "./components/Dashboard";
+import Login from "./components/Login";
+import QuestionForm from "./components/QuestionForm";
 
-const App = () => {
-  const [token, setToken] = useState(null);
-  const [page, setPage] = useState('form');
+function App() {
+  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [view, setView] = useState("form");
 
   useEffect(() => {
-    const savedToken = localStorage.getItem('authToken');
-    if (savedToken) {
-      setToken(savedToken);
-    }
-  }, []);
-
-  const handleLogin = (token) => {
-    localStorage.setItem('authToken', token);
-    setToken(token);
-    setPage('form');
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem('authToken');
-    setToken(null);
-    setPage('login');
-  };
-
-  if (!token) return <Login onLogin={handleLogin} />;
+    if (token) localStorage.setItem("token", token);
+    else localStorage.removeItem("token");
+  }, [token]);
 
   return (
-    <div className="app">
+    <div className="app-container">
       <nav>
-        <button onClick={() => setPage('form')}>Enviar Feedback</button>
-        <button onClick={() => setPage('dashboard')}>Ver Feedbacks</button>
-        <button onClick={handleLogout}>Sair</button>
+        <button onClick={() => setView("form")}>Enviar Feedback</button>
+        <button onClick={() => setView("question")}>Enviar Dúvida</button>
+        <button onClick={() => setView("dashboard")}>Visualizar Feedbacks</button>
+        {token && <button onClick={() => setToken(null)}>Sair</button>}
       </nav>
-      {page === 'form' ? <FeedbackForm /> : <Dashboard token={token} />}
+
+      {view === "form" && <FeedbackForm />}
+      {view === "question" && <QuestionForm />}
+      {view === "dashboard" && (
+        token ? (
+          <Dashboard token={token} />
+        ) : (
+          <Login setToken={setToken} />
+        )
+      )}
     </div>
   );
-};
+}
 
 export default App;
