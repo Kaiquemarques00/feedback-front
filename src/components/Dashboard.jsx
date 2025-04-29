@@ -42,7 +42,6 @@ const Dashboard = ({ token }) => {
           feedbacks.map((feedback, index) => (
             <div key={index} className="feedback-card">
               <h3>{feedback.name}</h3>
-              <p><strong>Email:</strong> {feedback.email}</p>
               <p><strong>Nota:</strong> {feedback.note}</p>
               <p><strong>Comentário:</strong> {feedback.comment}</p>
             </div>

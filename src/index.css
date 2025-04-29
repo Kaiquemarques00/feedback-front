@@ -1,7 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+
 nav {
   display: flex;
   justify-content: center;
   gap: 1rem;
+  width: 100%;
   padding: 1rem;
   background-color: #ffffff;
   border-bottom: 1px solid #e0e0e0;
@@ -9,26 +18,49 @@ nav {
   position: sticky;
   top: 0;
   z-index: 100;
+  flex-wrap: wrap; /* Permite que os itens se reordem em telas menores */
 }
 
 nav button {
-  background-color: #007bff;
+  background-color: #2e7d32; /* Cor ajustada para o padrão da página */
   color: white;
   border: none;
-  padding: 0.6rem 1.2rem;
   border-radius: 8px;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  flex-grow: 1; /* Faz os botões ocuparem o máximo de espaço disponível */
+  text-align: center;
+  min-width: 120px; /* Garante que os botões tenham uma largura mínima */
 }
 
 nav button:hover {
+  background-color: #1b5e20; /* Alteração para tom mais escuro quando passa o mouse */
   opacity: 80%;
   transform: translateY(-1px);
 }
 
 nav button:active {
-  background-color: #3e8e41;
+  background-color: #3e8e41; /* Mantendo a cor de fundo ativa */
   transform: scale(0.98);
+}
+
+@media (max-width: 768px) {
+  nav {
+    padding: 1rem;
+    flex-direction: column; /* Alinha os botões em uma coluna */
+    gap: 0.8rem;
+  }
+
+  nav button {
+    width: 100%; /* Faz os botões ocuparem toda a largura */
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  nav button {
+    font-size: 0.9rem; /* Ajusta o tamanho da fonte para telas menores */
+  }
 }

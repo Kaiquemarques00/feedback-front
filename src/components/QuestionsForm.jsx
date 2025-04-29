@@ -12,7 +12,7 @@ const QuestionForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3001/questions", form);
+      await axios.post("https://feedback-api-w3kg.onrender.com/questions", form);
       setMsg("Dúvida enviada com sucesso!");
       setSuccess(true);
       setForm({ name: "", question: "" });

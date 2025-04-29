@@ -19,7 +19,7 @@ const FeedbackForm = () => {
     try {
       await axios.post('https://feedback-api-w3kg.onrender.com/feedback', form);
       setMsg({ text: 'Feedback enviado com sucesso!', type: 'success' });
-      setForm({ name: '', email: '', note: 1, comment: '' });
+      setForm({ name: '', note: 1, comment: '' });
     } catch {
       setMsg({ text: 'Erro ao enviar feedback.', type: 'error' });
     }
@@ -35,12 +35,6 @@ const FeedbackForm = () => {
           value={form.name}
           onChange={handleChange}
           required
-        />
-        <input
-          name="email"
-          placeholder="Email"
-          value={form.email}
-          onChange={handleChange}
         />
         <select
           name="note"
